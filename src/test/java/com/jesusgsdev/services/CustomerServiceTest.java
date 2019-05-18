@@ -64,7 +64,8 @@ public class CustomerServiceTest {
         given(customerRepository.findCustomerByEmail(email)).willReturn(Optional.of(customer));
 
         //When
-        Optional customerFound = customerRepository.findCustomerByEmail(email);
+        Optional customerFound = customerService.findCustomerByEmail(email);
+
 
         //Then
         assertAll("Customer found",

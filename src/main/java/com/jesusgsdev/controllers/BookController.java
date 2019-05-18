@@ -1,6 +1,7 @@
 package com.jesusgsdev.controllers;
 
 import com.jesusgsdev.dtos.BookDTO;
+import com.jesusgsdev.entities.Book;
 import com.jesusgsdev.facades.BookFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class BookController {
 
     @GetMapping
     public List<BookDTO> getAll(){
+
         return bookFacade.findAll();
     }
 
@@ -35,4 +37,10 @@ public class BookController {
         return bookFacade.findBooksByAuthor(author);
     }
 
+    @GetMapping(params = "title")
+    public List<BookDTO> getBooksByTitle(@RequestParam("title") String title) {
+        return bookFacade.findBooksByNameSearch(title);
+    }
+    /*  Book book = Book.builder().isbn("ISBN00001").title("El niño del pijama").price(9.99).author("Author Name").pages(200).provider("provider").build();
+        bookFacade.addBook(BookDTO.fromBook(book));*/
 }
